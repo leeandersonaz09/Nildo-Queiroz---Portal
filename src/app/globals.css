@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Tailwind v4 dark variant */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, .dark, .dark *));
+
+:root {
+  /* Fundo claro premium (off-white) */
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+  --panel-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --primary: #f59e0b; /* Dourado / Âmbar Nildo Queiroz */
+  --primary-hover: #d97706;
+  
+  --radius-soft: 1.5rem; /* 24px */
+}
+
+html.dark,
+.dark {
+  /* Fundo Midnight Slate - Muito Luxo e Profundidade */
+  --background: #0B1120;
+  --foreground: #f8fafc;
+  --panel-bg: rgba(30, 41, 59, 0.4);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --primary: #f59e0b;
+  --primary-hover: #fbbf24;
+  
+  --radius-soft: 1.5rem; /* 24px */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border-color);
+  --color-panel: var(--panel-bg);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --radius-soft: var(--radius-soft);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Scrollbar fina e arredondada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Sombra suave do design system */
+.shadow-soft {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.dark .shadow-soft {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Entradas suaves (animate-in) */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-in-from-bottom {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation-fill-mode: both; animation-duration: 0.5s; }
+.fade-in { animation-name: fade-in; }
+.slide-in-from-bottom-8 { animation-name: slide-in-from-bottom; }
+.duration-300 { animation-duration: 0.3s; }
+.duration-500 { animation-duration: 0.5s; }
+.duration-700 { animation-duration: 0.7s; }
+
+/* Regras de impressão */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .evitar-quebra {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
